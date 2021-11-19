@@ -1,32 +1,14 @@
 {
   "manifest_version": 2,
-  "name": "Keyword Marker",
-  "description": "A rich extension example: Marks specific keywords on specific (StackExchange) sites",
+  "name": "Redmine Time Tracker",
+  "description": "Time Tracker that helps logging hours in Redmine",
   "version": "0.1",
   "permissions": [
     "storage"
   ],
-  "background": {
-    "scripts": ["static/js/background.js"],
-    "persistent": false
-  },
-  "content_scripts": [{
-    "js": [ "static/js/content.js" ],
-    "matches": [
-      "https://stackoverflow.com/*", "https://*.stackoverflow.com/*",
-      "https://*.stackexchange.com/*"
-    ]
-  }],
-  "icons": {
-    "16": "icon.ico",
-    "32": "icon.ico",
-    "64": "icon.ico",
-    "128": "icon.ico",
-    "256": "icon.ico"
-  },
   "browser_action": {
-    "default_icon": "icon.ico",
-    "default_title": "Keyword Marker",
+    "default_icon": "static/media/icon.png",
+    "default_title": "Redmine Time Tracker",
     "default_popup": "popup.html"
   },
   "options_ui": {
@@ -34,3 +16,4 @@
     "open_in_tab": true
   }
 }
+
