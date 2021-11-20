@@ -7,7 +7,7 @@
     "storage"
   ],
   "browser_action": {
-    "default_icon": "static/media/icon.png",
+    "default_icon": "icon.png",
     "default_title": "Redmine Time Tracker",
     "default_popup": "popup.html"
   },

@@ -5,6 +5,7 @@ import {
 } from '../actions/settings';
 
 const initialState = {
+    appName: "Redmine Time Logger",
     matchWhole: false,
     matchCase: false,
     color: '#ffffff',

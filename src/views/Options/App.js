@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Input, Form, Checkbox, Button, Divider } from 'semantic-ui-react';
+import { Image, Input, Form, Button, Divider } from 'semantic-ui-react';
 import {
   setMatchWhole, setMatchCase,
   setColor, setColorBg, setBold, setUnderline
@@ -29,21 +29,37 @@ class App extends Component {
   }
 
   render() {
-    const { matchWhole, matchCase, color, colorBg, bold, underline } = this.props;
+    const { appName, matchCase, color, colorBg, bold, underline } = this.props;
     return (
         <div className='App'>
-          <h2>Settings</h2>
+          <div>
+            <Image src='icon.png' size='small' bordered />
+            <h2>{appName}</h2>
+          </div>
           <Form>
-            <Divider />
+            <Divider/>
             <Form.Group inline>
-              <Form.Field>
-                <label>API Key</label>
+              <Form.Field width={4}>
+                <label>Redmine URL</label>
               </Form.Field>
-              <Form.Field>
-                <Input name='software-api-key'  type="password" placeholder="Enter API Key here..."/>
+              <Form.Field width={12}>
+                <Input name='api-url'  type="text" placeholder="https://redmine.example.com"/>
               </Form.Field>
             </Form.Group>
-            <Divider />
+            <Divider/>
+            <Form.Group inline>
+              <Form.Field width={4}>
+                <label>Redmine API key</label>
+              </Form.Field>
+              <Form.Field width={12}>
+                <Input name='api-token'  type="password" placeholder="Enter API Key here..."/>
+              </Form.Field>
+            </Form.Group>
+            <Divider/>
+            <Form.Group inline>
+              <Button positive>Save</Button>
+              <Button>Cancel</Button>
+            </Form.Group>
           </Form>
         </div>
     );
