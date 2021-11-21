@@ -13,27 +13,26 @@ const users = [
     },
 ];
 
-export const auth = ({ username, password }) => new Promise(resolve => {
+export const auth = ({username, password}) => new Promise(resolve => {
     setTimeout(() => {
-        const user = username && password && users.find( o =>
+        const user = username && password && users.find(o =>
             o.id === username && o.password === password
         );
         if (user)
-            resolve( {ok: true, token: user.token} );
+            resolve({ok: true, token: user.token});
         else
-            resolve( {ok: false, message: 'Wrong username or password'} );
+            resolve({ok: false, message: 'Wrong username or password'});
     }, 1000);
 });
 
 export const fetchProfile = token => new Promise(resolve => {
     setTimeout(() => {
-        const user = token && users.find( o => o.token === token );
+        const user = token && users.find(o => o.token === token);
         if (user) {
             const {name, keywords} = user;
-            resolve( { ok: true, data: {name, keywords} } );
-        }
-        else {
-            resolve( {ok: false} );
+            resolve({ok: true, data: {name, keywords}});
+        } else {
+            resolve({ok: false});
         }
     }, 1000);
 });

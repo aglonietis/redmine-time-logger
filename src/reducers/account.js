@@ -1,11 +1,7 @@
-import {
-    ACCOUNT_AUTH, ACCOUNT_PROFILE, ACCOUNT_LOGOUT
-} from '../actions/account';
+import {ACCOUNT_AUTH} from '../actions/account';
 
 const initialState = {
-    token: false,
-    name: '',
-    keywords: false
+    authenticated: false
 };
 
 export default function account(state = initialState, action) {
@@ -14,21 +10,7 @@ export default function account(state = initialState, action) {
         case ACCOUNT_AUTH:
             return {
                 ...state,
-                token: data
-            };
-        case ACCOUNT_PROFILE:
-            const {name, keywords} = data;
-            return {
-                ...state,
-                name,
-                keywords: Array.isArray(keywords)? keywords.slice() : false
-            };
-        case ACCOUNT_LOGOUT:
-            return {
-                ...state,
-                token: false,
-                name: '',
-                keywords: false
+                authenticated: Boolean(data)
             };
         default:
             return state;

@@ -1,6 +1,4 @@
-import {
-     SET_API_URL, SET_API_KEY
-} from '../actions/settings';
+import {SET_API_KEY, SET_API_URL} from '../actions/settings';
 
 const initialState = {
     appName: "Redmine Time Logger",
