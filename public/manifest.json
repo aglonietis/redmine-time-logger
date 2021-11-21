@@ -1,12 +1,12 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Redmine Time Tracker",
-  "description": "Time Tracker that helps logging hours in Redmine",
+  "description": "Redmine Time Tracker that helps logging hours in Redmine",
   "version": "0.1",
   "permissions": [
     "storage"
   ],
-  "browser_action": {
+  "action": {
     "default_icon": "icon.png",
     "default_title": "Redmine Time Tracker",
     "default_popup": "popup.html"

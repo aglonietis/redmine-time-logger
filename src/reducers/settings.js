@@ -1,51 +1,25 @@
 import {
-    SET_MATCH_WHOLE, SET_MATCH_CASE,
-    SET_COLOR, SET_COLOR_BG,
-    SET_BOLD, SET_UNDERLINE
+     SET_API_URL, SET_API_KEY
 } from '../actions/settings';
 
 const initialState = {
     appName: "Redmine Time Logger",
-    matchWhole: false,
-    matchCase: false,
-    color: '#ffffff',
-    colorBg: '#ff9632',
-    bold: false,
-    underline: false
+    apiUrl: "something",
+    apiKey: "something"
 };
 
 export default function settings(state = initialState, action) {
     const {type, data} = action;
     switch (type) {
-        case SET_MATCH_WHOLE:
+        case SET_API_URL:
             return {
                 ...state,
-                matchWhole: Boolean(data)
+                apiUrl: data
             };
-        case SET_MATCH_CASE:
+        case SET_API_KEY:
             return {
                 ...state,
-                matchCase: Boolean(data)
-            };
-        case SET_COLOR:
-            return {
-                ...state,
-                color: data
-            };
-        case SET_COLOR_BG:
-            return {
-                ...state,
-                colorBg: data
-            };
-        case SET_BOLD:
-            return {
-                ...state,
-                bold: Boolean(data)
-            };
-        case SET_UNDERLINE:
-            return {
-                ...state,
-                underline: Boolean(data)
+                apiKey: data
             };
         default:
             return state;
