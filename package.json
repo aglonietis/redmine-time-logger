@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "env-cmd": "^10.1.0",
     "npm-watch": "^0.11.0",
     "react": "^17.0.2",
     "react-app-rewired": "^2.1.8",
@@ -23,11 +24,11 @@
     }
   },
   "scripts": {
-    "watch": "npm-watch",
-    "start": "react-scripts start",
-    "build": "react-app-rewired build",
-    "test": "react-app-rewired test",
-    "eject": "react-scripts eject"
+    "watch": "env-cmd -f .env npm-watch",
+    "start": "env-cmd -f .env react-scripts start",
+    "build": "env-cmd -f .env react-app-rewired build",
+    "test": "env-cmd -f .env react-app-rewired test",
+    "eject": "env-cmd -f .env react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app",

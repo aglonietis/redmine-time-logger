@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Header, Icon, Label, Placeholder} from 'semantic-ui-react';
 
-export default class Authed extends Component {
+export default class Authenticated extends Component {
     onSettings = (e) => {
         e.preventDefault();
         chrome.runtime.openOptionsPage && chrome.runtime.openOptionsPage();

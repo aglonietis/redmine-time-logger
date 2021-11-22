@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Button, Container, Header, Segment} from 'semantic-ui-react';
 import {accountAuth} from '../../actions/account';
-import Authed from './Authed';
-import Unauthed from './Unauthed';
+import Authenticated from './Authenticated';
+import Unauthenticated from './Unauthenticated';
 import './App.css';
 
 class App extends Component {
@@ -13,18 +13,15 @@ class App extends Component {
     }
 
     render() {
-        const {appName, authenticated} = this.props;
-        const View = authenticated ? Authed : Unauthed;
+        const {authenticated} = this.props;
+        const View = authenticated ? Authenticated : Unauthenticated;
         return (
             <div className='App'>
-                <Header as='h3' attached='top' textAlign='center' inverted color='teal'>
-                    {appName}
+                <Header as='h3' attached='top' textAlign='center' color='red'>
+                    {process.env.REACT_APP_APP_NAME}
+                    <Button floated='right' className='Background-white' circular icon='cog' onClick={this.onSettings}/>
                 </Header>
                 <div className='App-view'>
-                    <Container textAlign='center'>
-                        <Button floated='rights' circular icon='cog' onClick={this.onSettings}/>
-                    </Container>
-
                     <Segment textAlign='center'>
                         <View {...this.props}/>
                     </Segment>

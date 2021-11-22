@@ -19,12 +19,12 @@ class App extends Component {
     }
 
     render() {
-        const {appName, apiUrl, apiKey} = this.props;
+        const {apiUrl, apiKey} = this.props;
         return (
             <div className='App'>
                 <div>
                     <Image src='icon.png' size='small' bordered/>
-                    <h2>{appName}</h2>
+                    <h2>{process.env.REACT_APP_APP_NAME}</h2>
                 </div>
                 <Form>
                     <Divider/>

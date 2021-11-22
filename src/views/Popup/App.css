@@ -17,3 +17,7 @@ body {
 .App-view {
     margin: 1em;
 }
+
+.ui.button.Background-white {
+    background-color:white;
+}

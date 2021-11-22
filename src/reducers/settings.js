@@ -1,9 +1,8 @@
 import {SET_API_KEY, SET_API_URL} from '../actions/settings';
 
 const initialState = {
-    appName: "Redmine Time Logger",
-    apiUrl: "something",
-    apiKey: "something"
+    apiUrl: "",
+    apiKey: ""
 };
 
 export default function settings(state = initialState, action) {
