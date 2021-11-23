@@ -1,10 +1,17 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Button, Divider, Form, Image, Input} from 'semantic-ui-react';
+import {Loader, Button, Divider, Form, Image, Input, Segment} from 'semantic-ui-react';
 import {setApiKey, setApiUrl} from '../../actions/settings';
 import './App.css';
+import {CheckAuthentication} from '../../api/redmine/api';
 
 class App extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            testLoading: false
+        };
+    }
 
     changeApiUrl = (e) => {
         this.props.setApiUrl(e.target.value);
@@ -15,7 +22,18 @@ class App extends Component {
     }
 
     testApiConnection = (e) => {
+        this.setState({
+            testLoading: true
+        });
 
+        CheckAuthentication()
+            .then( response => {
+                this.setState({
+                    testLoading: false
+                });
+
+                console.log(response);
+            });
     }
 
     render() {
@@ -26,6 +44,7 @@ class App extends Component {
                     <Image src='icon.png' size='small' bordered/>
                     <h2>{process.env.REACT_APP_APP_NAME}</h2>
                 </div>
+
                 <Form>
                     <Divider/>
                     <Form.Group inline>
@@ -48,7 +67,37 @@ class App extends Component {
                         </Form.Field>
                     </Form.Group>
                 </Form>
-                <Button onClick={this.testApiConnection}>Test Connection</Button>
+                <Button onClick={this.testApiConnection}>
+                    Test Connection
+                </Button>
+                <div>
+                    <Loader active={this.state.testLoading} />
+                    <Divider hidden />
+                    <div>
+                        <h2>User Info</h2>
+                    </div>
+                    <Form>
+                        <Divider/>
+                        <Form.Group inline>
+                            <Form.Field width={4}>
+                                <label>Redmine URL</label>
+                            </Form.Field>
+                            <Form.Field width={12}>
+                                <label>Redmine URL</label>
+                            </Form.Field>
+                        </Form.Group>
+                        <Divider/>
+                        <Form.Group inline>
+                            <Form.Field width={4}>
+                                <label>Redmine API key</label>
+                            </Form.Field>
+                            <Form.Field width={12}>
+                                <label>Redmine API key</label>
+                            </Form.Field>
+                        </Form.Group>
+                    </Form>
+                </div>
+
             </div>
         );
     }

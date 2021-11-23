@@ -1,43 +1,38 @@
-import { useSelector } from 'react-redux'
+import {getStore} from "../../store";
+import axios from "axios";
 
-// import { createStore } from 'redux';
-// import storeCreatorFactory from 'reduxed-chrome-storage';
-// import reducers from './reducers';
-// import { accountAuth } from './actions';
-//
-// const storeCreator = storeCreatorFactory({createStore});
-// let store;
-// const getStore = async () => {
-//     if (store)
-//         return store;
-//     store = await storeCreator(reducers);
-//     return store;
-// };
-//
-// chrome.runtime.onStartup.addListener(async () => {
-//     const store = await getStore();
-//     // reset user session:
-//     store.dispatch(accountAuth());
-// });
-//
-// chrome.tabs.onActivated.addListener(async data => {
-//     const {tabId} = data;
-//     if (!tabId)
-//         return;
-//     const store = await getStore();
-//     const state = store.getState();
-//     const {account, marker} = state;
-//     const toMark = account.keywords && marker.enabled;
-//     if (!toMark)
-//         return;
-//     // reset marker stats:
-//     store.dispatch(setStats(false));
-//     // pass focus to active tab:
-//     chrome.tabs.sendMessage(tabId, {id: 'tabFocusPass'});
-// });
-//
-// (async () => {
-//     const store = await getStore();
-//     store.subscribe(() => {
-//     });
-// })();
+let store = null;
+
+function getApiUrl() {
+    return store.getState().settings.apiUrl;
+}
+
+function getApiKey() {
+    return store.getState().settings.apiKey;
+}
+
+function getRequestHeaders() {
+    return {
+        headers: {
+            'X-Redmine-API-Key': getApiKey(),
+            'Content-type': 'application/json',
+            'Accept': 'application/json'
+        }
+    }
+}
+
+function prepareForCall(url) {
+    return url + ".json";
+}
+
+export async function CheckAuthentication() {
+    store = await getStore();
+
+    const response = await axios.get(prepareForCall(getApiUrl()+"/users/current"),getRequestHeaders());
+
+    return response.data;
+}
+
+
+// TEST
+//     axios.get(getApiUrl()+"/issues/76614.json",getRequestHeaders()).then(res => console.log(res))

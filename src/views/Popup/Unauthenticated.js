@@ -6,9 +6,11 @@ export default class Unauthenticated extends Component {
     }
 
     render() {
+        const {apiUrl} = this.props;
+
         return (
             <div>
-                <label>Your configuration has incomplete! Please visit options and finish configuration!</label>
+                <label>{apiUrl} Your configuration has incomplete! Please visit options and finish configuration!</label>
             </div>
         );
     }

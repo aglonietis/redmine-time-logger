@@ -1,3 +1,20 @@
+// import storePromise from "./store";
+// import {CheckAuthentication} from './api/redmine/api';
+
+// chrome.runtime.onStartup.addListener(async () => {
+//     // const store = await storePromise;
+//     //
+//     // CheckAuthentication()
+//     console.log("test");
+// });
+//
+// chrome.tabs.onUpdated.addListener(async function (tabId, changeInfo, tab) {
+//     // const store = await storePromise;
+//     //
+//     // CheckAuthentication()
+//     console.log("test");
+// })
+
 // import { createStore } from 'redux';
 // import storeCreatorFactory from 'reduxed-chrome-storage';
 // import reducers from './reducers';

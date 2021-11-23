@@ -21,7 +21,7 @@ export default class Authenticated extends Component {
     }
 
     render() {
-        const {name, keywords, enabled, stats} = this.props;
+        const {name, keywords, enabled, stats,apiUrl} = this.props;
         return (
             <div>
                 {!name && !keywords &&

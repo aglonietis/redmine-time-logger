@@ -4,8 +4,16 @@
   "description": "Redmine Time Tracker that helps logging hours in Redmine",
   "version": "0.1",
   "permissions": [
-    "storage"
+    "storage",
+    "declarativeNetRequest",
+    "declarativeNetRequestFeedback"
   ],
+  "host_permissions": [
+    "http://redmine.viasms.eu/*"
+  ],
+  "background": {
+    "service_worker": "static/js/background.js"
+  },
   "action": {
     "default_icon": "icon.png",
     "default_title": "Redmine Time Tracker",
