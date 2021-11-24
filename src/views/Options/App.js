@@ -31,13 +31,11 @@ class App extends Component {
                 this.setState({
                     testLoading: false
                 });
-
-                console.log(response);
             });
     }
 
     render() {
-        const {apiUrl, apiKey} = this.props;
+        const {apiUrl, apiKey, accountFirstName, accountLastName} = this.props;
         return (
             <div className='App'>
                 <div>
@@ -80,19 +78,19 @@ class App extends Component {
                         <Divider/>
                         <Form.Group inline>
                             <Form.Field width={4}>
-                                <label>Redmine URL</label>
+                                <label>First name</label>
                             </Form.Field>
                             <Form.Field width={12}>
-                                <label>Redmine URL</label>
+                                <label>{accountFirstName}</label>
                             </Form.Field>
                         </Form.Group>
                         <Divider/>
                         <Form.Group inline>
                             <Form.Field width={4}>
-                                <label>Redmine API key</label>
+                                <label>Last name</label>
                             </Form.Field>
                             <Form.Field width={12}>
-                                <label>Redmine API key</label>
+                                <label>{accountLastName}</label>
                             </Form.Field>
                         </Form.Group>
                     </Form>

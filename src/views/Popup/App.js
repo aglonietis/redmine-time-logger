@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Button, Container, Header, Segment} from 'semantic-ui-react';
-import {accountAuth} from '../../actions/account';
+import {setAccountAuth} from '../../actions/account';
 import Authenticated from './Authenticated';
 import Unauthenticated from './Unauthenticated';
 import './App.css';
@@ -35,10 +35,6 @@ const mapStateToProps = state => Object.assign(
     {}, state.account, state.marker
 );
 
-const mapDispatchToProps = dispatch => ({
-    accountAuth: data => {
-        dispatch(accountAuth(data));
-    }
-});
+const mapDispatchToProps = dispatch => ({});
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
