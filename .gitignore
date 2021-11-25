@@ -3,3 +3,7 @@
 .idea/
 .DS_Store
 /deploy
+build.crx
+build.pem
+build.crz.zip
+build.zip
