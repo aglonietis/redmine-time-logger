@@ -4,9 +4,7 @@
   "description": "Redmine Time Tracker that helps logging hours in Redmine.",
   "version": "0.1",
   "permissions": [
-    "storage",
-    "declarativeNetRequest",
-    "declarativeNetRequestFeedback"
+    "storage"
   ],
   "host_permissions": [
     "http://redmine.viasms.eu/*"

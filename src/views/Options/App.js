@@ -41,7 +41,7 @@ class App extends Component {
         return (
             <div className='App'>
                 <div>
-                    <Image src='icon.png' size='small' bordered/>
+                    <Image src={process.env.REACT_APP_ICON} size='small' bordered/>
                     <h2>{process.env.REACT_APP_APP_NAME}</h2>
                 </div>
 
