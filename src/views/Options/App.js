@@ -67,11 +67,15 @@ class App extends Component {
                         </Form.Field>
                     </Form.Group>
                 </Form>
-                <Button onClick={this.testApiConnection}>
-                    Test Connection
-                </Button>
+
                 <div>
-                    <Loader active={this.state.testLoading} />
+                    <Button onClick={this.testApiConnection}>
+                        Test Connection
+                        <Loader active={this.state.testLoading} />
+                    </Button>
+                </div>
+
+                <div>
                     <Divider hidden />
 
                     {account.authenticated ? (
