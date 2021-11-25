@@ -73,7 +73,9 @@ class App extends Component {
                 <div>
                     <Loader active={this.state.testLoading} />
                     <Divider hidden />
-                    <Visibility onScreen={account.authenticated}>
+
+                    {account.authenticated ? (
+                    <div>
                         <div>
                             <h2>User Info</h2>
                         </div>
@@ -97,7 +99,17 @@ class App extends Component {
                                 </Form.Field>
                             </Form.Group>
                         </Form>
-                    </Visibility>
+                    </div>
+                    ) : (
+                    <div>
+                        <div>
+                            <h2>Connection not established</h2>
+                        </div>
+                    </div>
+                    )}
+
+
+
                 </div>
 
 
