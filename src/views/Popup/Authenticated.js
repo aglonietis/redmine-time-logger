@@ -21,7 +21,7 @@ export default class Authenticated extends Component {
     }
 
     render() {
-        const {name, keywords, enabled, stats,apiUrl} = this.props;
+        const {name, keywords, stats,firstName, lastName} = this.props;
         return (
             <div>
                 {!name && !keywords &&
@@ -33,11 +33,9 @@ export default class Authenticated extends Component {
                 </Placeholder>
                 }
 
-                {name &&
                 <Header as='h4'>
-                    <Icon name='user'/>{name}
+                    <Icon name='user'/>{firstName} {lastName}
                 </Header>
-                }
 
                 {keywords && keywords.map((v, i) =>
                     <Label color='red' tag>

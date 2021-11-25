@@ -1,10 +1,9 @@
-import {ACCOUNT_AUTH, ACCOUNT_FIRST_NAME, ACCOUNT_LAST_NAME} from '../actions/account';
-import {DEFAULT_FIRST_NAME, DEFAULT_LAST_NAME} from "../constants/user";
+import {ACCOUNT_AUTH, ACCOUNT_FIRST_NAME, ACCOUNT_LAST_NAME,ACCOUNT_LOGOUT} from '../actions/account';
 
 const initialState = {
     authenticated: false,
-    accountFirstName: DEFAULT_FIRST_NAME,
-    accountLastName: DEFAULT_LAST_NAME
+    firstName: "",
+    lastName: ""
 };
 
 export default function account(state = initialState, action) {
@@ -18,12 +17,19 @@ export default function account(state = initialState, action) {
         case ACCOUNT_FIRST_NAME:
             return {
                 ...state,
-                accountFirstName: data
+                firstName: data
             };
         case ACCOUNT_LAST_NAME:
             return {
                 ...state,
-                accountLastName: data
+                lastName: data
+            };
+        case ACCOUNT_LOGOUT:
+            return {
+                ...state,
+                authenticated: Boolean(false),
+                firstName: "",
+                lastName: ""
             };
         default:
             return state;

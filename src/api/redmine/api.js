@@ -1,6 +1,6 @@
 import storePromise from "../../store";
 import axios from "axios";
-import {setAccountAuth,setAccountFirstName,setAccountLastName} from "../../actions";
+import {setAccountAuth, setAccountFirstName, setAccountLastName, setAccountLogout} from "../../actions";
 
 let store = null;
 
@@ -29,21 +29,17 @@ function prepareForCall(url) {
 export async function CheckAuthentication() {
     store = await storePromise;
 
-    const response = await axios.get(prepareForCall(getApiUrl()+"/users/current"),getRequestHeaders());
+    await axios.get(prepareForCall(getApiUrl()+"/users/current"),getRequestHeaders())
+        .then( response => {
+            store.dispatch(setAccountAuth(true));
+            store.dispatch(setAccountFirstName(response.data.user.firstname));
+            store.dispatch(setAccountLastName(response.data.user.lastname));
+        })
+        .catch(response => {
+            store.dispatch(setAccountLogout());
+        });
 
-    // TODO: Something is wrong with saving First name and Last name.
-    // Saving Account Auth works.!
-    store.dispatch(setAccountAuth(false));
-    store.dispatch(setAccountFirstName("test"));
-    store.dispatch(setAccountLastName(response.data.user.lastname));
-
-    console.log(response.data);
-    console.log(response.data.user);
-    console.log(response.data.user.firstname);
-    console.log(store.getState().accountFirstName);
-    console.log(store.getState().accountLastName);
-
-    return response.data;
+    return true;
 }
 
 
