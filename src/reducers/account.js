@@ -1,7 +1,8 @@
 import {ACCOUNT_AUTH, ACCOUNT_FIRST_NAME, ACCOUNT_LAST_NAME,ACCOUNT_LOGOUT} from '../actions/account';
+import {AUTH_UNAUTHENTICATED, AUTH_NOT_CHECKED} from "../constants/user";
 
 const initialState = {
-    authenticated: false,
+    authenticated: AUTH_NOT_CHECKED,
     firstName: "",
     lastName: ""
 };
@@ -12,7 +13,7 @@ export default function account(state = initialState, action) {
         case ACCOUNT_AUTH:
             return {
                 ...state,
-                authenticated: Boolean(data)
+                authenticated: data
             };
         case ACCOUNT_FIRST_NAME:
             return {
@@ -27,7 +28,7 @@ export default function account(state = initialState, action) {
         case ACCOUNT_LOGOUT:
             return {
                 ...state,
-                authenticated: Boolean(false),
+                authenticated: AUTH_UNAUTHENTICATED,
                 firstName: "",
                 lastName: ""
             };

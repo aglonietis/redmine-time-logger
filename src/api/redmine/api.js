@@ -1,6 +1,7 @@
 import storePromise from "../../store";
 import axios from "axios";
 import {setAccountAuth, setAccountFirstName, setAccountLastName, setAccountLogout} from "../../actions";
+import {AUTH_AUTHENTICATED} from "../../constants/user";
 
 let store = null;
 
@@ -14,11 +15,16 @@ function getApiKey() {
 
 function getRequestHeaders() {
     return {
-        headers: {
-            'X-Redmine-API-Key': getApiKey(),
-            'Content-type': 'application/json',
-            'Accept': 'application/json'
-        }
+        'X-Redmine-API-Key': getApiKey(),
+        'Content-type': 'application/json',
+        'Accept': 'application/json'
+    };
+}
+
+function getRequestConfig() {
+    return {
+        headers: getRequestHeaders(),
+        timeout: process.env.REACT_APP_API_TIMEOUT
     }
 }
 
@@ -29,9 +35,9 @@ function prepareForCall(url) {
 export async function CheckAuthentication() {
     store = await storePromise;
 
-    await axios.get(prepareForCall(getApiUrl()+"/users/current"),getRequestHeaders())
+    await axios.get(prepareForCall(getApiUrl()+"/users/current"),getRequestConfig())
         .then( response => {
-            store.dispatch(setAccountAuth(true));
+            store.dispatch(setAccountAuth(AUTH_AUTHENTICATED));
             store.dispatch(setAccountFirstName(response.data.user.firstname));
             store.dispatch(setAccountLastName(response.data.user.lastname));
         })

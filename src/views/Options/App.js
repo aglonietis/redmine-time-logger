@@ -4,6 +4,7 @@ import {Loader, Button, Divider, Form, Image, Input, Visibility} from 'semantic-
 import {setApiKey, setApiUrl} from '../../actions/settings';
 import './App.css';
 import {CheckAuthentication} from '../../api/redmine/api';
+import {AUTH_AUTHENTICATED, AUTH_UNAUTHENTICATED, AUTH_NOT_CHECKED} from "../../constants/user";
 
 class App extends Component {
     constructor(props) {
@@ -69,7 +70,7 @@ class App extends Component {
                 </Form>
 
                 <div>
-                    <Button onClick={this.testApiConnection}>
+                    <Button onClick={this.testApiConnection} active={this.state.testLoading}>
                         Test Connection
                         <Loader active={this.state.testLoading} />
                     </Button>
@@ -78,7 +79,7 @@ class App extends Component {
                 <div>
                     <Divider hidden />
 
-                    {account.authenticated ? (
+                    { account.authenticated === AUTH_AUTHENTICATED ? (
                     <div>
                         <div>
                             <h2>User Info</h2>
@@ -104,16 +105,15 @@ class App extends Component {
                             </Form.Group>
                         </Form>
                     </div>
-                    ) : (
+                    ): ""}
+
+                    { account.authenticated === AUTH_UNAUTHENTICATED ? (
                     <div>
                         <div>
-                            <h2>Connection not established</h2>
+                            <h2>Connection not established. Check Configuration again!</h2>
                         </div>
                     </div>
-                    )}
-
-
-
+                    ) : "" }
                 </div>
 
 
